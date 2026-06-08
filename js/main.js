@@ -1,12 +1,10 @@
 /* I18N */
 const T = {
   en: {
-    'nav.services':'Services','nav.work':'Work','nav.pricing':'Pricing','nav.contact':'Contact',
+    'nav.services':'Services','nav.work':'Work','nav.quote':'Quote','nav.pricing':'Pricing','nav.contact':'Contact',
     'hero.kicker':'Web Design & Development',
     'hero.sub':"From restaurants to e-commerce. We craft bold, fast, unforgettable websites that make your clients remember you long after they close the tab.",
     'hero.cta':'Get a Quote →','hero.seeWork':'See our work ↓',
-    'forWho.label':'Built for',
-    'forWho.sub':"No matter your industry — if you need a site that commands attention and converts visitors into customers, that's exactly what we do.",
     'services.title':'What\nWe Do',
     'services.aside':'Every site is hand-crafted, pixel-perfect and delivered with full SEO setup and 12 months of maintenance support.',
     'services.s1':'Restaurant & Food','services.s2':'E-Commerce','services.s3':'Portfolio & Creative',
@@ -35,12 +33,10 @@ const T = {
     'footer.location':'Based in Europe · Available Worldwide','footer.contact':'Contact',
   },
   fr: {
-    'nav.services':'Services','nav.work':'Projets','nav.pricing':'Tarifs','nav.contact':'Contact',
+    'nav.services':'Services','nav.work':'Projets','nav.quote':'Quote','nav.pricing':'Tarifs','nav.contact':'Contact',
     'hero.kicker':'Design & Développement Web',
     'hero.sub':"Des restaurants aux e-commerces. On crée des sites audacieux, rapides et inoubliables — que vos clients garderont en tête longtemps après avoir fermé l'onglet.",
     'hero.cta':'Demander un devis →','hero.seeWork':'Voir nos projets ↓',
-    'forWho.label':'Conçu pour',
-    'forWho.sub':"Peu importe votre secteur — si vous avez besoin d'un site qui attire l'attention et convertit les visiteurs en clients, c'est exactement ce qu'on fait.",
     'services.title':"Ce qu'on\nfait",
     'services.aside':'Chaque site est créé sur mesure, pixel par pixel, livré avec SEO complet et 12 mois de maintenance.',
     'services.s1':'Restauration & Food','services.s2':'E-Commerce','services.s3':'Portfolio & Créatif',
@@ -69,12 +65,10 @@ const T = {
     'footer.location':'Basé en Europe · Disponible partout','footer.contact':'Contact',
   },
   sv: {
-    'nav.services':'Tjänster','nav.work':'Projekt','nav.pricing':'Priser','nav.contact':'Kontakt',
+    'nav.services':'Tjänster','nav.work':'Projekt','nav.quote':'Quote','nav.pricing':'Priser','nav.contact':'Kontakt',
     'hero.kicker':'Webbdesign & Utveckling',
     'hero.sub':'Från restauranger till e-handel. Vi skapar djärva, snabba och oförglömliga webbplatser som dina kunder minns.',
     'hero.cta':'Begär offert →','hero.seeWork':'Se våra projekt ↓',
-    'forWho.label':'Byggt för',
-    'forWho.sub':'Oavsett bransch — behöver du en sajt som syns och konverterar besökare till kunder är det precis vad vi gör.',
     'services.title':'Vad vi\ngör',
     'services.aside':'Varje sajt är handbyggd, pixelperfekt och levereras med full SEO-setup och 12 månaders underhållsstöd.',
     'services.s1':'Restaurang & Mat','services.s2':'E-handel','services.s3':'Portfolio & Kreativt',
@@ -103,12 +97,10 @@ const T = {
     'footer.location':'Baserade i Europa · Tillgängliga globalt','footer.contact':'Kontakt',
   },
   fi: {
-    'nav.services':'Palvelut','nav.work':'Työt','nav.pricing':'Hinnat','nav.contact':'Yhteys',
+    'nav.services':'Palvelut','nav.work':'Työt','nav.quote':'Quote','nav.pricing':'Hinnat','nav.contact':'Yhteys',
     'hero.kicker':'Verkkosuunnittelu & Kehitys',
     'hero.sub':'Ravintoloista verkkokauppaan. Rakennamme rohkeita, nopeita ja unohtumattomia verkkosivuja, jotka asiakkaasi muistavat.',
     'hero.cta':'Pyydä tarjous →','hero.seeWork':'Katso töitämme ↓',
-    'forWho.label':'Rakennettu',
-    'forWho.sub':'Toimialasta riippumatta — jos tarvitset sivuston joka kiinnittää huomion ja muuntaa kävijöitä asiakkaiksi, se on täsmälleen mitä teemme.',
     'services.title':'Mitä\nteemme',
     'services.aside':'Jokainen sivusto on käsin rakennettu, pikselintarkka ja toimitetaan täydellä SEO-asetuksella ja 12 kuukauden ylläpitotuella.',
     'services.s1':'Ravintola & Ruoka','services.s2':'Verkkokauppa','services.s3':'Portfolio & Luovat',
@@ -138,13 +130,7 @@ const T = {
   }
 };
 
-const CYCLE = {
-  en:['RESTAURANTS','E-COMMERCE','PORTFOLIOS','STARTUPS','CREATIVES','SERVICES'],
-  fr:['RESTAURANTS','E-COMMERCES','PORTFOLIOS','STARTUPS','CRÉATIFS','SERVICES'],
-  sv:['RESTAURANGER','E-HANDEL','PORTFOLIOS','STARTUPS','KREATÖRER','TJÄNSTER'],
-  fi:['RAVINTOLOILLE','VERKKOKAUPOILLE','PORTFOLIOILLE','STARTUPEILLE','LUOVILLE','PALVELUILLE'],
-};
-let lang = 'en', cycIdx = 0;
+let lang = 'en';
 
 function applyLang(l) {
   lang = l;
@@ -155,8 +141,6 @@ function applyLang(l) {
     if (v !== undefined) el.innerHTML = v.replace(/\n/g,'<br>');
   });
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
-  const fw = document.getElementById('fw-cyc');
-  if (fw) fw.textContent = (CYCLE[l]||CYCLE.en)[cycIdx];
 }
 
 /* LOADER */
@@ -170,7 +154,7 @@ function applyLang(l) {
   }, 70);
   setTimeout(() => {
     document.getElementById('loader').classList.add('hidden');
-    initReveal(); startCycle(); scramble();
+    initReveal(); scramble();
   }, 1300);
 })();
 
@@ -216,7 +200,7 @@ function applyLang(l) {
     ctaBlock.addEventListener('mouseenter', () => setCursor("LET'S GO"));
     ctaBlock.addEventListener('mouseleave', clearCursor);
   }
-  document.querySelectorAll('a,button,.srv-item,.fw-chip,#priceToggle').forEach(el => {
+  document.querySelectorAll('a,button,.srv-item,#priceToggle').forEach(el => {
     el.addEventListener('mouseenter', () => { document.body.classList.add('chover'); });
     el.addEventListener('mouseleave', () => { document.body.classList.remove('chover'); });
   });
@@ -280,23 +264,6 @@ const cntObs = new IntersectionObserver(ee => {
   });
 }, {threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
-
-/* CYCLING */
-function startCycle() {
-  const el = document.getElementById('fw-cyc');
-  const chips = document.querySelectorAll('.fw-chip');
-  if (!el) return;
-  el.style.transition = 'opacity .3s ease,transform .4s cubic-bezier(.16,1,.3,1)';
-  setInterval(() => {
-    cycIdx = (cycIdx + 1) % chips.length;
-    el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
-    chips.forEach((c,i) => c.classList.toggle('active', i === cycIdx));
-    setTimeout(() => {
-      el.textContent = (CYCLE[lang]||CYCLE.en)[cycIdx];
-      el.style.opacity = '1'; el.style.transform = 'translateY(0)';
-    }, 280);
-  }, 2200);
-}
 
 /* WORK HORIZONTAL SCROLL */
 (function(){
@@ -430,3 +397,30 @@ function qbReset() {
   qbGo(1);
   qbUpdatePrices();
 }
+
+/* WORK GALLERY — hover cycling (all panels) */
+(function initWorkGalleries() {
+  document.querySelectorAll('.wp-gallery').forEach(gallery => {
+    const imgs = gallery.querySelectorAll('.wp-gimg');
+    const dots = gallery.querySelectorAll('.wp-gdot');
+    let idx = 0;
+    let timer = null;
+
+    function showIdx(i) {
+      imgs[idx].classList.remove('act');
+      dots[idx].classList.remove('act');
+      idx = i % imgs.length;
+      imgs[idx].classList.add('act');
+      dots[idx].classList.add('act');
+    }
+
+    gallery.addEventListener('mouseenter', () => {
+      timer = setInterval(() => showIdx(idx + 1), 1200);
+    });
+    gallery.addEventListener('mouseleave', () => {
+      clearInterval(timer);
+      timer = null;
+      showIdx(0);
+    });
+  });
+})();
